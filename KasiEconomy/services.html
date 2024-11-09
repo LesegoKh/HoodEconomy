@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby Services | Community Hub</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="./script.js"></script>
+    <style>
+        .nearby-services-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('images/nearby-services-bg.jpg') center/cover no-repeat;
+        }
+        .business-logo {
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .map-container {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: white;
+        }
+        .list-group-item {
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .list-group-item h5 {
+            font-weight: 700;
+        }
+        .list-group-item p {
+            color: #6c757d;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+        .social-icon {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #007bff;
+            transition: color 0.3s;
+        }
+        .social-icon:hover {
+            color: #0056b3;
+        }
+        .address {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .learn-more-btn {
+            margin-left: auto;
+        }
+
+        .promotions-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa; /* Light background for contrast */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        
+        .promotion {
+            margin-bottom: 30px; /* Space between promotions */
+            padding: 10px;
+            border: 1px solid #ddd; /* Light border */
+            border-radius: 5px; /* Rounded corners for individual promotions */
+            background-color: #ffffff; /* White background for each promotion */
+        }
+        
+        .promotion h4 {
+            margin: 0; /* Remove default margin */
+            color: #007bff; /* Bootstrap primary color */
+        }
+       
+    </style>
+    <script>
+        let map;
+        let markers = [];
+        let activeIndex = null; // Track the active business index
+        let services = [
+            { location: { lat: -28.740954, lng: 24.727411 }, title: "Happy Hoppas Jumping Castles", category: "entertainment", image: "./LOGO.jpg", address: "21 Limpopo Str, Riviera, Kimberley", social: { facebook: "#", whatsapp: "#", tiktok: "#" }, profile: "./HH.html"},
+            { location: { lat: -28.704968, lng: 24.720748 }, title: "House Of Thandolu Salon", category: "beauty", image: "./tatt.jpg", address: "75 Adam Namakola Str, Vergenoeg", social: { facebook: "#", whatsapp: "#", tiktok: "#" }, profile: "house-of-thandolu.html"},
+            { location: { lat: -28.741350, lng: 24.727190 }, title: "Photogenic and I", category: "photography", image: "./photo.png", address: "8 Komati Str, Riviera, Kimberley", social: { facebook: "#", whatsapp: "#", tiktok: "#" }, profile: "puplu.html"},
+            { location: { lat: -28.720968, lng: 24.732130 }, title: "Authentic Designs", category: "beauty", image: "./designer.jpg", address: "1051 Phutane Str, Galeshewe", social: { facebook: "#", whatsapp: "#", tiktok: "#" }, profile: "authentic-designs.html"},
+            { location: { lat: -28.735968, lng: 24.729130 }, title: "Vital Eats", category: "food", image: "./eats.jpg", address: "Amakhuzane Str, Vergenoeg", social: { facebook: "#", whatsapp: "#", tiktok: "#" }, profile: "vital-eats.html"}
+        ];
+
+        function initMap() {
+            const options = {
+                zoom: 14,
+                center: { lat: -28.7409, lng: 24.7274 }
+            };
+
+            map = new google.maps.Map(document.getElementById('map'), options);
+
+            services.forEach((service, index) => {
+                if (service.location.lat && service.location.lng) {
+                    const marker = new google.maps.Marker({
+                        position: service.location,
+                        map: map,
+                        title: service.title
+                    });
+
+                    marker.category = service.category;
+                    marker.index = index; // Store index for identification
+                    markers.push(marker);
+
+                    marker.addListener('click', () => {
+                        setMarker(marker.index); // Set marker on click
+                    });
+                }
+            });
+            // Load all businesses by default
+            filterBusinesses('all');
+        }
+
+        function filterBusinesses(selectedCategory) {
+            const listingsContainer = document.getElementById('businessListings');
+            listingsContainer.innerHTML = ''; // Clear current listings
+
+            markers.forEach((marker, index) => {
+                if (selectedCategory === 'all' || marker.category === selectedCategory) {
+                    marker.setMap(map);  // Show marker on map
+                    
+                    const listingHTML = `
+                        <div class="list-group-item d-flex align-items-center" data-category="${marker.category}" onclick="toggleDetails(${index})">
+                            <div>
+                                <h5>${services[index].title}</h5>
+                                <p>${services[index].description || 'No description available'}</p>
+                                <div class="social-icons" style="display: ${activeIndex === index ? 'flex' : 'none'};">
+                                    <a href="${services[index].social.facebook}" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                    <a href="${services[index].social.whatsapp}" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="${services[index].social.tiktok}" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                                    <span class="address">${services[index].address}</span>
+                                    <a href="${services[index].profile}" class="btn btn-link learn-more-btn">Learn More</a>
+                                </div>
+                            </div>
+                            <img src="${services[index].image}" alt="${services[index].title} Logo" class="business-logo ml-auto">
+                        </div>
+                    `;
+                    listingsContainer.insertAdjacentHTML('beforeend', listingHTML);
+                } else {
+                    marker.setMap(null); // Hide marker from map
+                }
+            });
+        }
+
+        function toggleDetails(index) {
+            // If the clicked item is already active, deactivate it
+            if (activeIndex === index) {
+                activeIndex = null; // Deselect
+            } else {
+                activeIndex = index; // Select the clicked business
+            }
+            filterBusinesses(document.getElementById('categoryFilter').value); // Refresh listings to show/hide social icons and addresses
+            setMarker(index); // Set the selected marker
+        }
+
+        function setMarker(index) {
+            const service = services[index];
+            const location = service.location;
+
+            // Update the marker position and zoom in
+            markers.forEach(marker => marker.setMap(null)); // Hide all markers
+            markers[index].setMap(map); // Show the selected marker
+            map.setZoom(16);
+            map.setCenter(location);
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Community Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="./home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Nearby Services Page -->
+    <header class="nearby-services-hero d-flex justify-content-center align-items-center">
+        <div class="container text-center text-white">
+            <h1>Discover Nearby Services</h1>
+            <p>Your local businesses at your fingertips</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>Filter by Category</h5>
+                <select id="categoryFilter" class="form-control" onchange="filterBusinesses(this.value)">
+                    <option value="all">All</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="photography">Photography</option>
+                    <option value="food">Food</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <div id="businessListings" class="list-group"></div>
+                <div class="map-container">
+                    <div id="map" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Promo's-->
+    <!-- Promotions Section -->
+<div class="promotions-section">
+    <h2>Current Promotions</h2>
+    
+    <div class="promotion">
+        <h4>Happy Hoppas Special - Summer Splash Sale!</h4>
+        <p>Get 20% off all tickets from now until the end of summer! Use code: SPLASH20 at checkout.</p>
+    </div>
+    <div class="promotion">
+        <h4>Family Fun Package</h4>
+        <p>Purchase 4 tickets and get the 5th one free! Perfect for family outings!</p>
+    </div>
+    <div class="promotion">
+        <h4>Happy Hour Specials</h4>
+        <p>Join us every weekend from 4 PM to 6 PM for exclusive deals on snacks and drinks!</p>
+    </div>
+</div>
+
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChXq1b1SavEvHiD8-8U06o7WsKW_wNq2g&callback=initMap"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

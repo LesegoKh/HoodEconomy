@@ -1,0 +1,31 @@
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('./tower.jpg') center/cover no-repeat;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Features Section */
+.feature-icon {
+    color: #007bff;
+}
+
+.feature-icon i {
+    transition: color 0.3s;
+}
+
+.feature-icon:hover i {
+    color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #fff;
+}

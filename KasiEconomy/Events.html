@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Events | Community Hub</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Header Styling */
+        .events-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+        }
+
+        /* Carousel Image Styling */
+        .carousel-item {
+            height: 100vh; /* Full height for the slider */
+        }
+        
+        .carousel-item img {
+            object-fit: cover; /* Cover the entire area */
+            height: 100%; /* Ensure it takes full height */
+            width: 100%; /* Ensure it takes full width */
+        }
+
+        /* Event Cards */
+        .event-card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-card .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .event-card .card-text i {
+            color: #007bff;
+            margin-right: 5px;
+        }
+
+        .event-card .btn {
+            background-color: #007bff;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .event-card .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Filter Bar Styling */
+        .custom-select, .form-control {
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .btn-block {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar (reused from landing page) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Community Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="./home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Events.html">Events</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Image Slider -->
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="hero d-flex align-items-center text-center" style="background: url('./esunday.jpg') center/cover no-repeat;">
+                    <div class="container">
+                        <h1 class="display-2 text-white">Event 1 Name Here</h1>
+                        <p class="lead text-white">Date Here</p>
+                        <p class="lead text-white">Venue Name Here</p>
+                        <a href="#explore" class="btn btn-primary btn-lg mt-3">See Now!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero d-flex align-items-center text-center" style="background: url('./diggers.jpg') center/cover no-repeat;">
+                    <div class="container">
+                        <h1 class="display-2 text-white">Event 2 Name Here</h1>
+                        <p class="lead text-white">Date Here</p>
+                        <p class="lead text-white">Venue Name Here</p>
+                        <a href="#explore" class="btn btn-primary btn-lg mt-3">See Now!</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="hero d-flex align-items-center text-center" style="background: url('./dead.jpg') center/cover no-repeat;">
+                    <div class="container">
+                        <h1 class="display-2 text-white">Event 3 Name Here</h1>
+                        <p class="lead text-white">Date Here</p>
+                        <p class="lead text-white">Venue Name Here</p>
+                        <a href="#explore" class="btn btn-primary btn-lg mt-3">See Now!</a>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <!-- Header Section for Events Page -->
+    <header class="events-hero d-flex align-items-center text-center">
+        <div class="container">
+            <h1 class="display-4 text-white">Discover Local Events</h1>
+            <p class="lead text-white">Stay connected with your community by attending upcoming events near you.</p>
+        </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-3 mb-3">
+                <select class="custom-select">
+                    <option selected>All Categories</option>
+                    <option value="1">Workshops</option>
+                    <option value="2">Meetups</option>
+                    <option value="3">Markets</option>
+                    <option value="4">Social Events</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="date" class="form-control" placeholder="Choose Date">
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" class="form-control" placeholder="Location">
+            </div>
+            <div class="col-md-3 mb-3 text-center">
+                <button class="btn btn-primary btn-block">Filter Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="container mt-4">
+        <div class="row">
+            <!-- Event Card Example -->
+            <div class="col-md-4 mb-4">
+                <div class="card event-card">
+                    <img src="./market2.jpg" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Colour Fest ft. Early B</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i> Dec 02, 2024</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> Kimberley Diamond Oval</p>
+                        <a href="#" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat Event Card for multiple events -->
+            <div class="col-md-4 mb-4">
+                <div class="card event-card">
+                    <img src="./event1.jpg" class="card-img-top" alt="Event 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Kimberley Fun Fest</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i> Nov 27, 2024</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> Monster Mob Raceway</p>
+                        <a href="#" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more event cards as needed -->
+            <div class="col-md-4 mb-4">
+                <div class="card event-card">
+                    <img src="./market3.jpg" class="card-img-top" alt="Event 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Kimberley Fun Fest</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i> Dec 29, 2024</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i> Monster Mob Raceway</p>
+                        <a href="#" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more event cards as needed -->
+            <div class="col-md-4 mb-4">
+                <div class="card event-card">
+                    <img src="./event3.jpg" class="card-img-top" alt="Event 4">
+                    <div class="card-body">
+                        <h5 class="card-title">Line Dance</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt"></i> Nov 16, 2024</p>
+                        <p class="card-text"><i class="fas fa-map-marker-alt"></i>The Kimberley Club</p>
+                        <a href="#" class="btn btn-primary btn-block">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center p-4">
+        <p>&copy; 2024 Community Hub. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

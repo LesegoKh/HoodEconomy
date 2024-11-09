@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Business Name</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .hero-section {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('./photo.png') center/cover no-repeat;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .business-info {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .gallery img {
+            width: calc(33.33% - 10px); /* Three images per row with gap */
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .reviews-section {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .review {
+            margin-bottom: 20px;
+        }
+        .review h5 {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .review p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Community Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="./home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./Events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div>
+            <h1>About Our Business</h1>
+            <p>Discover our story, values, and what makes us unique.</p>
+        </div>
+    </header>
+
+    <div class="container my-5">
+        <!-- Business Info Section -->
+        <div class="business-info">
+            <h2>Welcome to [Business Name]</h2>
+            <p><strong>Founded:</strong> Year of Establishment</p>
+            <p><strong>Location:</strong> Address, City, State</p>
+            <p><strong>Contact:</strong> Phone Number | Email Address</p>
+            <p><strong>About Us:</strong> Brief description about the business, its mission, and values.</p>
+        </div>
+
+        <!-- Image Gallery Section -->
+        <h3 class="text-center">Image Gallery</h3>
+        <div class="gallery">
+            <img src="images/image1.jpg" alt="Description 1">
+            <img src="images/image2.jpg" alt="Description 2">
+            <img src="images/image3.jpg" alt="Description 3">
+            <img src="images/image4.jpg" alt="Description 4">
+            <img src="images/image5.jpg" alt="Description 5">
+            <img src="images/image6.jpg" alt="Description 6">
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <h3>Customer Reviews</h3>
+            <div class="review">
+                <h5>John Doe</h5>
+                <p>"Amazing service! Highly recommended."</p>
+            </div>
+            <div class="review">
+                <h5>Jane Smith</h5>
+                <p>"A wonderful experience. Will come back again!"</p>
+            </div>
+            <div class="review">
+                <h5>Mike Johnson</h5>
+                <p>"Very professional and friendly staff. Five stars!"</p>
+            </div>
+            <!-- Add more reviews as needed -->
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

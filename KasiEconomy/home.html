@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasi Hub</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Custom styles for the feature section */
+        .feature-icon {
+            position: relative;
+            border: 1px solid #ccc; /* Thin border */
+            border-radius: 5px;
+            overflow: hidden; /* Prevents overflow of overlay */
+        }
+
+        .feature-icon img {
+            width: 100%; /* Make the image fill the container */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.3s ease; /* Smooth transition */
+        }
+
+        .feature-icon:hover .overlay {
+            opacity: 1; /* Show overlay on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Kasi Connect</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="./Events.html">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+   <!-- Hero Section -->
+<div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="hero d-flex align-items-center text-center" style="background: url('./mayibuye.jpg') center/cover no-repeat;">
+                <div class="container">
+                    <h1 class="display-2 text-white">Welcome to Kasi Connect</h1>
+                    <p class="lead text-white">Discover events, services, and more in your kasi!</p>
+                    <a href="#explore" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="hero d-flex align-items-center text-center" style="background: url('./diggers.jpg') center/cover no-repeat;">
+                <div class="container">
+                    <h1 class="display-2 text-white">Explore Your Community</h1>
+                    <p class="lead text-white">Connect with local events and services!</p>
+                    <a href="#explore" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="hero d-flex align-items-center text-center" style="background: url('./dead.jpg') center/cover no-repeat;">
+                <div class="container">
+                    <h1 class="display-2 text-white">Join Local Activities</h1>
+                    <p class="lead text-white">Be part of something big in your kasi!</p>
+                    <a href="#explore" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="hero d-flex align-items-center text-center" style="background: url('./tower.jpg') center/cover no-repeat;">
+                <div class="container">
+                    <h1 class="display-2 text-white">Support Local Businesses</h1>
+                    <p class="lead text-white">Discover and promote local talent!</p>
+                    <a href="#explore" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+    <!-- Features Section -->
+    <section id="features" class="container mt-5">
+        <h2 class="text-center mb-4">Browse Catalog</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <img src="./event2.jpg" alt="Events" class="img-fluid">
+                    <div class="overlay">
+                        <h3>Events</h3>
+                        <p>Discover the latest local events and happenings in your community.</p>
+                    </div>
+                </div>
+                <a href="./Events.html" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <img src="./5_20230706_150324_0004.jpg" alt="Trending" class="img-fluid">
+                    <div class="overlay">
+                        <h3>Services</h3>
+                        <p>Local 100% South African Businesses around your area.</p>
+                    </div>
+                </div>
+                <a href="./services.html" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-icon mb-3">
+                    <img src="./event2.jpg" alt="Nearby" class="img-fluid">
+                    <div class="overlay">
+                        <h3>Nearby</h3>
+                        <p>Find nearby services and businesses to support local growth.</p>
+                    </div>
+                </div>
+                <a href="#explore" class="btn btn-primary btn-lg mt-3">Explore Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white py-4">
+        <div class="container">
+            <p>&copy; 2024 Community Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Custom JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
